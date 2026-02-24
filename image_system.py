@@ -51,13 +51,17 @@ def imageSystem2Pics(im1: Image.Image, im2:Image.Image, pad):
     im3 = border(im3)
     return im3
 
-im1 = Image.open("imageTest1.jpg")
-im2 = Image.open("imageTest2.jpg")
+def process_landscape( fname1, fname2, outFname ):
+    im1 = Image.open(fname1)
+    im2 = Image.open(fname2)
 
-if not size(im1, im2):
-    im1, im2 = scale(im1, im2)
+    if not size(im1, im2):
+        im1, im2 = scale(im1, im2)
 
-im3 = imageSystem2Pics( im2, im1, 0.05)
- 
-im3.show()
-im3.save("outputImage.jpg")
+    im3 = imageSystem2Pics( im2, im1, 0.05)
+     
+    #im3.show()
+    im3.save(outFname)
+
+if __name__ == "__main__":
+    process_landscape( "imageTest1.jpg", "imageTest2.jpg", "outputImage.jpg")

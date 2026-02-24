@@ -1,4 +1,5 @@
 import os
+import image_system
 from tkinter import Tk, filedialog
 from PIL import Image
 
@@ -6,6 +7,7 @@ root = Tk()
 root.withdraw()
 
 folder_path = filedialog.askdirectory(title="Select a folder containing JPG images")
+output_path = filedialog.askdirectory(title="Select a folder for the output images")
 
 portrait_images = []
 landscape_images = []
@@ -50,3 +52,7 @@ print("\nLandscape Pairs:")
 for idx, (img1, img2) in enumerate(landscape_pairs, start=1):
     print(f"landscape_{idx}_a = '{img1}'")
     print(f"landscape_{idx}_b = '{img2}'")
+    image_system.process_landscape( os.path.join(folder_path, img1),
+                                    os.path.join(folder_path,img2),
+                                    os.path.join(output_path, f"landscape_{idx}.jpg") )
+
